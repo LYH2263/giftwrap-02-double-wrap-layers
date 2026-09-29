@@ -427,6 +427,82 @@ button.ribbon:hover {
   margin-left: 0.25rem;
 }
 
+/* —— 双层两路用纸 —— */
+.paper-cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.paper-col {
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(228, 239, 232, 0.6));
+}
+
+.paper-col.total {
+  border-color: rgba(31, 92, 87, 0.4);
+  background: linear-gradient(135deg, rgba(31, 92, 87, 0.12), rgba(214, 75, 106, 0.08));
+}
+
+.paper-col.off {
+  opacity: 0.5;
+}
+
+.paper-col .col-tag {
+  margin: 0 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+
+.paper-col .figure {
+  font-size: 1.7rem;
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.switch input {
+  width: 1.05rem;
+  height: 1.05rem;
+  accent-color: var(--ribbon);
+}
+
+.coef-row label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.coef-row input {
+  width: 110px;
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.8);
+  font: inherit;
+}
+
+.hint {
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.ok-line a {
+  color: var(--wash-b);
+  font-weight: 700;
+}
+
 .bad {
   color: var(--bad);
   font-weight: 600;
@@ -579,5 +655,9 @@ button.ribbon:hover {
   .hero {
     min-height: auto;
     padding-top: 0.5rem;
+  }
+
+  .paper-cols {
+    grid-template-columns: 1fr;
   }
 }
