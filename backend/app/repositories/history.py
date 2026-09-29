@@ -14,18 +14,37 @@ def insert_run(box_id, overlap, result, note=""):
     finally:
         c.close()
 
+def _with_result(row):
+    d = dict(row)
+    res = json.loads(d.pop("result_json"))
+    if "outer_paper_m2" not in res:
+        # legacy record written before double-layer support
+        outer = float(res.get("paper_m2", 0.0))
+        res["outer_paper_m2"] = outer
+        res["inner_paper_m2"] = 0.0
+        res["total_paper_m2"] = outer
+        res.setdefault("double_layer", False)
+        res.setdefault("lining_coefficient", None)
+    d["result"] = res
+    return d
+
+_SELECT = (
+    "SELECT r.*, b.name box_name FROM calc_runs r "
+    "LEFT JOIN boxes b ON b.id=r.box_id "
+)
+
+def get_run(run_id):
+    c = connect()
+    try:
+        row = c.execute(_SELECT + "WHERE r.id=?", (run_id,)).fetchone()
+        return _with_result(row) if row else None
+    finally:
+        c.close()
+
 def list_runs(limit=50):
     c = connect()
     try:
-        rows = c.execute(
-            """SELECT r.*, b.name box_name FROM calc_runs r LEFT JOIN boxes b ON b.id=r.box_id ORDER BY r.id DESC LIMIT ?""",
-            (limit,),
-        ).fetchall()
-        out = []
-        for row in rows:
-            d = dict(row)
-            d["result"] = json.loads(d.pop("result_json"))
-            out.append(d)
-        return out
+        rows = c.execute(_SELECT + "ORDER BY r.id DESC LIMIT ?", (limit,)).fetchall()
+        return [_with_result(row) for row in rows]
     finally:
         c.close()

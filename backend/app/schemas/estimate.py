@@ -6,3 +6,6 @@ class EstimateRequest(BaseModel):
     wrap_style: str = "cross"
     save: bool = False
     note: str = ""
+    double_layer: bool = False
+    # NaN/inf are rejected with a clean 422 by the service-layer isfinite guard
+    lining_coefficient: float | None = None

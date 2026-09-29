@@ -281,19 +281,51 @@ body::before {
 }
 
 select,
+input[type="number"],
 button,
 .btn {
   font: inherit;
   cursor: pointer;
 }
 
-select {
+select,
+input[type="number"] {
   min-width: 220px;
   padding: 0.55rem 0.75rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.72);
   color: var(--ink);
+}
+
+input[type="number"] {
+  min-width: 150px;
+  cursor: text;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: -0.35rem 0 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.toggle-row input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--ribbon);
+  cursor: pointer;
+}
+
+.coeff-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin: -0.45rem 0 1.1rem;
+  color: var(--ink-soft);
 }
 
 button,
@@ -410,6 +442,56 @@ button.ribbon:hover {
   margin-top: 1.25rem;
   padding: 1.15rem 0 0;
   border-top: 1px dashed rgba(184, 151, 59, 0.45);
+}
+
+.layer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin: 0.2rem 0 1rem;
+}
+
+.layer {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(228, 239, 232, 0.6));
+}
+
+.layer.muted {
+  opacity: 0.55;
+}
+
+.layer-tag {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.layer-val {
+  margin: 0.25rem 0;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: var(--wash-b);
+  font-variant-numeric: tabular-nums;
+}
+
+.layer-val small {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+.run-link {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  align-items: baseline;
 }
 
 .result-board .figure {

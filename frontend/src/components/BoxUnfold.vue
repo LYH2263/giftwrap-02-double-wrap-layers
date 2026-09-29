@@ -23,7 +23,7 @@ defineProps({
       <text x="140" y="152" text-anchor="middle">h≈{{ Number(h).toFixed(2) }}</text>
     </svg>
     <p v-if="paperM2 != null" class="stat-line">
-      估算用纸 <strong>{{ Number(paperM2).toFixed(4) }}</strong> m²（含折边系数）
+      外层估算用纸 <strong>{{ Number(paperM2).toFixed(4) }}</strong> m²（含折边系数）
     </p>
     <p v-else class="stat-line">
       外形 {{ Number(l).toFixed(2) }} × {{ Number(w).toFixed(2) }} × {{ Number(h).toFixed(2) }} m
